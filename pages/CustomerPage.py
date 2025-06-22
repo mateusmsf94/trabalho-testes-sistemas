@@ -72,3 +72,13 @@ class CustomerPage(BasePage):
             EC.url_contains("/account")
         )
         return self.is_url_account()
+    
+    def is_login_button_clickable(self):
+        """Check if login button is clickable after customer selection"""
+        try:
+            WebDriverWait(self.driver, 5).until(
+                EC.element_to_be_clickable(self.login_button)
+            )
+            return True
+        except:
+            return False

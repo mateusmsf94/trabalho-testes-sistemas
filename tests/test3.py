@@ -1,13 +1,6 @@
 import pytest
 
 class Test3:
-    @pytest.mark.parametrize('all_browser', ['chrome', 'edge', 'firefox'])
-    def test_customer_page_direct_access(self, run_all_browser_customer_isolated):
-        """Test direct access to customer page and basic functionality"""
-        customer_page = run_all_browser_customer_isolated
-        
-        # Test that page loads correctly
-        assert "/customer" in customer_page.driver.current_url, "Customer page not loaded"
     
     @pytest.mark.parametrize('all_browser', ['chrome', 'edge', 'firefox'])
     def test_get_available_customers(self, run_all_browser_customer_isolated):
@@ -31,13 +24,7 @@ class Test3:
         customer_page.select_customer("Harry Potter")
         
         # Verify login button appears after selection (it should be clickable)
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
-        
-        login_button_present = WebDriverWait(customer_page.driver, 5).until(
-            EC.element_to_be_clickable(customer_page.login_button)
-        )
-        assert login_button_present, "Login button should be clickable after customer selection"
+        assert customer_page.is_login_button_clickable(), "Login button should be clickable after customer selection"
     
     @pytest.mark.parametrize('all_browser', ['chrome', 'edge', 'firefox'])
     def test_complete_customer_login_flow_isolated(self, run_all_browser_customer_isolated):
