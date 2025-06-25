@@ -163,7 +163,7 @@ class ManagerPage(BasePage):
         if self.is_alert_present():
             alert_text = self.get_alert_text_and_accept()
             # Assert the alert contains success message and account number (case insensitive)
-            assert "Account created successfully" in alert_text or "created successfully" in alert_text, f"Expected success message, but got: {alert_text}"
+            assert "Account created successfully" in alert_text, f"Expected success message, but got: {alert_text}"
             assert "account number" in alert_text.lower(), f"Expected account number in alert, but got: {alert_text}"
             return alert_text
         else:

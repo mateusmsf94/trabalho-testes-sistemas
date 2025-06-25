@@ -53,10 +53,10 @@ class Test8:
         login_page.wait_for_customer_page()
         print("✅ Navigated to customer page")
         
-        # Step 6: Create CustomerPage with existing driver (similar to test2 flow)
+        # Step 6: Create CustomerPage with existing driver 
         customer_page = CustomerPage(driver=manager_page.driver)
         
-        # Step 7: Select John Doe and login (same as test2 but for John Doe)
+        # Step 7: Select John Doe and login 
         customer_page.select_customer_and_login("John Doe")
         assert customer_page.wait_for_account_page(), 'Account page not found'
         print(f"✅ Successfully logged in as John Doe and reached account page!")
